@@ -1,10 +1,14 @@
 import React from 'react';
 import MediaGallery from 'MediaGallery';
+import MediaGalleryProvider from 'context/MediaGalleryProvider';
+import media from 'utils/allMedia'
 
 function App() {
   return (
     <React.Fragment>
-      <MediaGallery />
+      <MediaGalleryProvider media={media}>
+        <MediaGallery />
+      </MediaGalleryProvider>
     </React.Fragment>
   );
 }
