@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { MediaGalleryContext } from 'context/MediaGalleryProvider';
+import { MediaGalleryContext, MediaGalleryContextProps } from 'context/MediaGalleryProvider';
 
 export function useMediaGallery() {
   const gallery = useContext(MediaGalleryContext);
-  return gallery;
+  return gallery as MediaGalleryContextProps;
 }
