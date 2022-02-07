@@ -1,10 +1,16 @@
 import React from 'react';
+import InlinePreview from 'components/Preview/Inline/InlinePreview';
+import ShowMedia from 'components/ShowMedia/ShowMedia';
+import { Div, MediaGalleryContainer } from './style';
 
 const MediaGallery: React.FC = () => {
   return (
-    <div>
-      <h1>Hello</h1>
-    </div>
+    <Div>
+      <MediaGalleryContainer>
+        <ShowMedia />
+        <InlinePreview />
+      </MediaGalleryContainer>
+    </Div>
   );
 };
 

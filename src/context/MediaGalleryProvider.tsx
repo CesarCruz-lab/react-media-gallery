@@ -2,30 +2,39 @@ import React, { createContext, useCallback, useEffect, useState } from 'react';
 
 // Utils
 import { generateHash } from 'utils/generateHash';
+import { createTheme } from 'Theme/theme';
 
 // Types
 import { SetState } from 'interfaces/SetState';
+import { ThemeProvider } from 'styled-components';
+import { ThemeModelProps } from 'Theme/theme';
+import { GalleryProps } from 'interfaces/Gallery';
+
+export type CustomThemeProps = {
+  mode: 'light' | 'dark';
+  theme: ThemeModelProps;
+};
 
 export interface MediaGalleryContextProps {
   gallery: GalleryProps[] | null;
   setGallery: SetState<GalleryProps[] | null>;
+  selectedMedia: GalleryProps | null;
+  setSelectedMedia: SetState<GalleryProps | null>
+  themeMode: 'light' | 'dark';
+  setThemeMode: SetState<'light' | 'dark'>;
 }
 
 export interface MediaGalleryProviderProps {
   media: string[];
-}
-
-export interface GalleryProps {
-  id: string;
-  path: string;
-  size: number;
-  mimetype: string;
+  customTheme?: CustomThemeProps;
 }
 
 export const MediaGalleryContext = createContext<MediaGalleryContextProps | null>(null);
 
-const MediaGalleryProvider: React.FC<MediaGalleryProviderProps> = ({ media, children }) => {
+const MediaGalleryProvider: React.FC<MediaGalleryProviderProps> = ({ media, customTheme, children }) => {
   const [gallery, setGallery] = useState<GalleryProps[] | null>(null);
+  const [selectedMedia, setSelectedMedia] = useState<GalleryProps | null>(null);
+  const [themeMode, setThemeMode] = useState<'light' | 'dark'>(customTheme?.mode || 'light');
 
   const blobToBase64: (blob: Blob) => Promise<string> = useCallback((blob: Blob) => {
     return new Promise((resolve, reject) => {
@@ -53,24 +62,27 @@ const MediaGalleryProvider: React.FC<MediaGalleryProviderProps> = ({ media, chil
           mimetype: blob.type,
         });
 
+        if (index === 0) setSelectedMedia(mediaData[0]);
         if (index === media.length - 1) setGallery(mediaData);
-      }); 
+      });
   }, [media, blobToBase64]);
 
   useEffect(() => {
     handleMedia();
   }, [handleMedia]);
 
-  console.log(gallery)
-
   return (
     <MediaGalleryContext.Provider
       value={{
         gallery,
         setGallery,
+        selectedMedia,
+        setSelectedMedia,
+        themeMode,
+        setThemeMode,
       }}
     >
-      {children}
+      <ThemeProvider theme={createTheme(themeMode, customTheme?.theme)}>{children}</ThemeProvider>
     </MediaGalleryContext.Provider>
   );
 };
