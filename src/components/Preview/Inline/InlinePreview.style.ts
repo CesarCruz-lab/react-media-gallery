@@ -43,6 +43,7 @@ export const InlinePreviewItem = styled.li`
   height: 100%;
   background: ${({ theme }) => theme.background};
   overflow: hidden;
+  cursor: pointer;
   aspect-ratio: 1 / 1;
 
   &:nth-of-type(1) {

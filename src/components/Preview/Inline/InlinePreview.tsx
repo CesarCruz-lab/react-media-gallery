@@ -14,7 +14,7 @@ import { BsArrowRightShort } from 'react-icons/bs';
 import Video from './VideoPreview';
 
 const InlinePreview: React.FC = () => {
-  const { gallery } = useMediaGallery();
+  const { gallery, setSelectedMedia } = useMediaGallery();
   const inlinePreviewListRef = useRef<HTMLUListElement>(null);
   const inlinePreviewBoxRef = useRef<HTMLDivElement>(null);
 
@@ -40,7 +40,7 @@ const InlinePreview: React.FC = () => {
       <InlinePreviewBox ref={inlinePreviewBoxRef}>
         <InlinePreviewList ref={inlinePreviewListRef}>
           {gallery?.map(media => (
-            <InlinePreviewItem key={media.id}>
+            <InlinePreviewItem key={media.id} onClick={() => setSelectedMedia(media)}>
               {/image/.test(media.mimetype) && <img src={media.path} alt={media.mimetype} />}
               {/video/.test(media.mimetype) && <Video media={media} />}
             </InlinePreviewItem>
