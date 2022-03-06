@@ -1,7 +1,19 @@
 {
   "name": "react-media-gallery",
-  "version": "0.1.0",
+  "description": "Gallery of images and videos made in ReactJS",
+  "version": "0.0.1",
+  "author": "César Cruz (https://github.com/CesarCruz-lab)",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CesarCruz-lab/react-media-gallery.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CesarCruz-lab/react-media-gallery/issues"
+  },
+  "homepage": "https://github.com/CesarCruz-lab/react-media-gallery",
+  "keywords": [],
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
