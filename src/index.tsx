@@ -1,12 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import MediaGallery from 'MediaGallery';
+import MediaGalleryProvider from 'context/MediaGalleryProvider';
 
-import './global/styles.css'
+import './global/styles.css';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+export { MediaGallery, MediaGalleryProvider };
