@@ -1,9 +1,8 @@
 {
-  "name": "react-media-gallery",
+  "name": "react-galleries",
   "description": "Gallery of images and videos made in ReactJS",
   "version": "0.0.1",
   "author": "César Cruz (https://github.com/CesarCruz-lab)",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/CesarCruz-lab/react-media-gallery.git"
